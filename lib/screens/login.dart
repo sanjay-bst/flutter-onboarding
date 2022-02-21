@@ -2,9 +2,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class Login extends StatefulWidget {
-  static const routeName = '/login';
+import '../router/router.dart';
 
+class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
 
   @override
@@ -12,57 +12,52 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  final TextEditingController userNameController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController _userNameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
-  var isValidUserName = true;
-  var isValidPassword = true;
-  var disabled = true;
-  var isLoading = true;
-  var isLoggedIn = false;
+  var _isValidUserName = true;
+  var _isValidPassword = true;
+  var _disabled = true;
 
-  void onSubmit(BuildContext context) async {
-    final userName = userNameController.text;
-    final password = passwordController.text;
-
-    if (userName.isEmpty || password.isEmpty) {
-      return;
-    }
+  void _onSubmit(BuildContext context) async {
+    final userName = _userNameController.text;
+    final password = _passwordController.text;
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('user_id', userName);
     prefs.setString('token', password);
 
-    Navigator.of(context)
-        .pushNamedAndRemoveUntil('/home', (Route<dynamic> route) => false);
+    Navigator.of(context).pushNamedAndRemoveUntil(
+      AppRouter.homePage,
+      (Route<dynamic> route) => false,
+    );
   }
 
-  void toggleSubmitBtnState() {
+  void _toggleSubmitBtnState() {
     setState(() {
-      disabled = userNameController.text.isEmpty ||
-          passwordController.text.isEmpty ||
-          !isValidUserName ||
-          !isValidPassword;
+      _disabled = _userNameController.text.isEmpty ||
+          _passwordController.text.isEmpty ||
+          !_isValidUserName ||
+          !_isValidPassword;
     });
   }
 
-  void onNameChangeHandler(_) {
-    final userNameLength = userNameController.text.length;
+  void _onNameChangeHandler(_) {
+    final userNameLength = _userNameController.text.length;
     setState(() {
-      isValidUserName = 3 <= userNameLength && userNameLength <= 10;
+      _isValidUserName = 3 <= userNameLength && userNameLength <= 10;
     });
 
-    toggleSubmitBtnState();
+    _toggleSubmitBtnState();
   }
 
-  void onPasswordChangeHandler(_) {
-    final passwordLength = passwordController.text.length;
-
+  void _onPasswordChangeHandler(_) {
+    final passwordLength = _passwordController.text.length;
     setState(() {
-      isValidPassword = 3 <= passwordLength && passwordLength <= 10;
+      _isValidPassword = 3 <= passwordLength && passwordLength <= 10;
     });
 
-    toggleSubmitBtnState();
+    _toggleSubmitBtnState();
   }
 
   @override
@@ -110,15 +105,15 @@ class _LoginState extends State<Login> {
                         counterText: '',
                       ),
                       keyboardType: TextInputType.text,
-                      controller: userNameController,
-                      onChanged: onNameChangeHandler,
+                      controller: _userNameController,
+                      onChanged: _onNameChangeHandler,
                       maxLength: 10,
                     ),
                     const SizedBox(
                       height: 5,
                     ),
                     Container(
-                      child: !isValidUserName
+                      child: !_isValidUserName
                           ? const Text(
                               'Minimum characters must be greater than or equal to 3',
                               style: TextStyle(
@@ -145,15 +140,15 @@ class _LoginState extends State<Login> {
                       obscureText: true,
                       autocorrect: false,
                       enableSuggestions: false,
-                      controller: passwordController,
-                      onChanged: onPasswordChangeHandler,
+                      controller: _passwordController,
+                      onChanged: _onPasswordChangeHandler,
                       maxLength: 10,
                     ),
                     const SizedBox(
                       height: 5,
                     ),
                     Container(
-                      child: !isValidPassword
+                      child: !_isValidPassword
                           ? const Text(
                               'Minimum characters must be greater than or equal to 3',
                               style: TextStyle(
@@ -177,7 +172,7 @@ class _LoginState extends State<Login> {
                             fontWeight: FontWeight.w500,
                           ),
                         ),
-                        onPressed: disabled ? null : () => onSubmit(context),
+                        onPressed: _disabled ? null : () => _onSubmit(context),
                         child: const Text('Save & continue'),
                       ),
                     ),

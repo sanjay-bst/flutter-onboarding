@@ -1,12 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import '../data/models/tournaments.dart';
+import '../data/models/user_details.dart';
 
 class FavouriteGames extends StatelessWidget {
-  final Tournaments tournaments;
+  final UserDetails _userDetails;
 
-  FavouriteGames(this.tournaments);
+  FavouriteGames(this._userDetails);
 
   Widget getApp(index) {
     return Column(
@@ -16,31 +16,48 @@ class FavouriteGames extends StatelessWidget {
           width: 96,
           child: Column(
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(
-                  20,
+              Container(
+                decoration: const BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color.fromRGBO(0, 26, 121, 0.08),
+                      offset: Offset(
+                        5.0,
+                        5.0,
+                      ),
+                      blurRadius: 10.0,
+                      spreadRadius: 2.0,
+                    )
+                  ],
                 ),
-                child: CachedNetworkImage(
-                  imageUrl: tournaments.favoriteGames[index]['icon_url'],
-                  placeholder: (context, url) => const SizedBox(
-                    width: 96,
-                    height: 96,
-                    child: Center(
-                      child: CircularProgressIndicator(),
-                    ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(
+                    20,
                   ),
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                  child: CachedNetworkImage(
+                    imageUrl: _userDetails.favoriteGames[index]['icon_url'],
+                    placeholder: (context, url) => const SizedBox(
+                      width: 96,
+                      height: 96,
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    ),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
+                  ),
                 ),
               ),
               const SizedBox(
                 height: 4,
               ),
-              Text(
-                tournaments.favoriteGames[index]['game_name'],
-                overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                  color: Color.fromRGBO(45, 45, 51, 1),
-                  fontSize: 14,
+              Flexible(
+                child: Text(
+                  _userDetails.favoriteGames[index]['game_name'],
+                  style: const TextStyle(
+                    color: Color.fromRGBO(45, 45, 51, 1),
+                    fontSize: 14,
+                  ),
                 ),
               ),
             ],
@@ -59,25 +76,33 @@ class FavouriteGames extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Favourite games',
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w500,
+          Container(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 18,
+            ),
+            child: const Text(
+              'Favourite games',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ),
           const SizedBox(
             height: 20,
           ),
-          Container(
+          SizedBox(
             height: 132,
             child: ListView.separated(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 18,
+              ),
               scrollDirection: Axis.horizontal,
-              itemCount: tournaments.favoriteGames.length,
+              itemCount: _userDetails.favoriteGames.length,
               itemBuilder: (context, index) {
                 return getApp(index);
               },
-              separatorBuilder: (BuildContext context, _) => const SizedBox(
+              separatorBuilder: (_, __) => const SizedBox(
                 width: 16,
               ),
             ),

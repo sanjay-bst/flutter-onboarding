@@ -1,14 +1,45 @@
-import '../models/tournaments.dart';
+import 'package:flutter_app/data/services/firebase.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../models/notification.dart';
+import '../models/user_details.dart';
 import '../services/network.dart';
 
 class Repository {
-  final NetworkService networkService;
+  final NetworkService _networkService;
+  final FirebaseService _firebaseService;
 
-  Repository(this.networkService);
+  Repository(this._networkService, this._firebaseService);
 
-  Future<Tournaments> fetchTournaments(userId, token) async {
-    final tournamentsRow = await networkService.fetchTournaments(userId, token);
+  Future<UserDetails> fetchUserDetails() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final userId = prefs.getString('user_id');
+    final token = prefs.getString('token');
 
-    return Tournaments.fromJson(tournamentsRow);
+    final userDetails = await _networkService.fetchUserDetails(userId, token);
+
+    return UserDetails.fromJson(userDetails);
+  }
+
+  Future<List<Notification>> fetchNotifications() async {
+    final notifications = await _firebaseService.fetchNotifications();
+
+    try {
+      List<Notification> listOfNotifications = [];
+
+      notifications.forEach(
+        (item) => listOfNotifications.add(
+          Notification(
+            date: item['timestamp'].toDate(),
+            title: item['title'],
+            imageUrl: item['image_url'],
+          ),
+        ),
+      );
+
+      return listOfNotifications;
+    } catch (e) {
+      return [];
+    }
   }
 }

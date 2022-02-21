@@ -1,6 +1,6 @@
 import '../dummy_data.dart';
 
-class Tournaments {
+class UserDetails {
   final String userName;
   final int matchesWon;
   final int highestRating;
@@ -16,7 +16,7 @@ class Tournaments {
   final int overallRating;
   final String userHandler;
 
-  Tournaments.fromJson(Map json)
+  UserDetails.fromJson(Map json)
       : userName = json['data']['username'],
         matchesWon = json['data']['matches_won'],
         highestRating = json['data']['highest_rating'],

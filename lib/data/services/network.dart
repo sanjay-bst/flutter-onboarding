@@ -6,7 +6,7 @@ import 'package:http/http.dart';
 class NetworkService {
   final baseurl = 'tournaments-uat-dot-game-tv-engg.appspot.com';
 
-  Future<Map> fetchTournaments(userId, token) async {
+  Future<Map> fetchUserDetails(userId, token) async {
     final queryParams = {
       'profile_user_id': '',
       'user_id': 'S5nua460TONzetIIfIgKkFFiQzv1',

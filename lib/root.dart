@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import './router/router.dart';
+
 class Root extends StatefulWidget {
   const Root({Key? key}) : super(key: key);
 
@@ -9,8 +11,6 @@ class Root extends StatefulWidget {
 }
 
 class _RootState extends State<Root> {
-  var isLoggedIn = false;
-
   @override
   void initState() {
     super.initState();
@@ -25,10 +25,12 @@ class _RootState extends State<Root> {
 
     setState(() {
       if (userId != null && token != null) {
-        Navigator.of(context)
-            .pushNamedAndRemoveUntil('/home', (Route<dynamic> route) => false);
+        Navigator.of(context).pushNamedAndRemoveUntil(
+          AppRouter.homePage,
+          (Route<dynamic> route) => false,
+        );
       } else {
-        Navigator.of(context).pushNamed('/login');
+        Navigator.of(context).pushNamed(AppRouter.loginPage);
       }
     });
   }

@@ -114,14 +114,6 @@ const favoriteGamesList = [
   },
   {
     "app_support_status": "live",
-    "game_id": "-8-ball-pool",
-    "icon_url":
-        "https://cdn.game.tv/tournaments/temp/images/temp_f2361eeb7c304228886b3e021bd55e5b",
-    "is_club_war_enabled": true,
-    "game_name": "8 Ball Pool"
-  },
-  {
-    "app_support_status": "live",
     "game_id": "-clash-of-clans",
     "icon_url":
         "https://cdn.game.tv/tournaments/temp/images/temp_daff1d41eacd4658be6e857d6559b944",

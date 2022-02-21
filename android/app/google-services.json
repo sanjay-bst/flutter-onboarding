@@ -1,56 +1,47 @@
 {
-  "project_info": {
-    "project_number": "458071601705",
-    "firebase_url": "https://game-tv-engg-firebase.firebaseio.com",
-    "project_id": "game-tv-engg-firebase",
-    "storage_bucket": "game-tv-engg-firebase.appspot.com"
-  },
-  "client": [
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:458071601705:android:b67919f5751b2df89ca238",
-        "android_client_info": {
-          "package_name": "tv.game"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "458071601705-mcp5t78jr2rlifda5aqal8qgqqiv8u3m.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "tv.game",
-            "certificate_hash": "e8c6a587b34077fbf5a45f6d0bba5f9604abdaaa"
-          }
-        },
-        {
-          "client_id": "458071601705-jdgmenst3c7ccantehjbs4oiis4or0mb.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAu2vvqozLo3kJAPD6CGadue_vYa4H6Y5c"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "458071601705-jdgmenst3c7ccantehjbs4oiis4or0mb.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "458071601705-a677rk2phg9v2a6j8kq332cds6p645up.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "tv.game",
-                "app_store_id": "1510786360"
-              }
-            }
-          ]
-        }
-      }
-    }
-  ],
-  "configuration_version": "1"
+	"project_info": {
+		"project_number": "374392284144",
+		"project_id": "gametv-app",
+		"storage_bucket": "gametv-app.appspot.com"
+	},
+	"client": [
+		{
+			"client_info": {
+				"mobilesdk_app_id": "1:374392284144:android:8696ce4e107677a218f335",
+				"android_client_info": {
+					"package_name": "tv.game"
+				}
+			},
+			"oauth_client": [
+				{
+					"client_id": "374392284144-97hvjoh5fkakcoe1824hmb9foa5d9p1o.apps.googleusercontent.com",
+					"client_type": 1,
+					"android_info": {
+						"package_name": "tv.game",
+						"certificate_hash": "fa6b82f1a0935ab4575e3fb0de59ba3d8d004600"
+					}
+				},
+				{
+					"client_id": "374392284144-ouuqqgtp5jsedok39gsutsnbvlsiqdug.apps.googleusercontent.com",
+					"client_type": 3
+				}
+			],
+			"api_key": [
+				{
+					"current_key": "AIzaSyALlibiHbzxRw8Bun6YFVCe5TkuNe0RejU"
+				}
+			],
+			"services": {
+				"appinvite_service": {
+					"other_platform_oauth_client": [
+						{
+							"client_id": "374392284144-ouuqqgtp5jsedok39gsutsnbvlsiqdug.apps.googleusercontent.com",
+							"client_type": 3
+						}
+					]
+				}
+			}
+		}
+	],
+	"configuration_version": "1"
 }

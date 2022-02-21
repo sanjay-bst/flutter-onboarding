@@ -1,15 +1,18 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import '../data/models/tournaments.dart';
+import '../data/models/user_details.dart';
 
 class User extends StatelessWidget {
-  final Tournaments tournaments;
+  final UserDetails _userDetails;
 
-  User(this.tournaments);
+  User(this._userDetails);
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 18,
+      ),
       margin: const EdgeInsets.only(
         top: 25,
       ),
@@ -20,7 +23,7 @@ class User extends StatelessWidget {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(40),
             child: CachedNetworkImage(
-              imageUrl: tournaments.avatarUrl,
+              imageUrl: _userDetails.avatarUrl,
               placeholder: (context, url) => const SizedBox(
                 width: 80,
                 height: 80,
@@ -39,7 +42,7 @@ class User extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              tournaments.userName,
+              _userDetails.userName,
               style: const TextStyle(
                 color: Color.fromRGBO(45, 45, 51, 1),
                 fontSize: 20,
@@ -53,7 +56,7 @@ class User extends StatelessWidget {
               onPressed: () {},
               child: Row(children: [
                 Text(
-                  '${tournaments.overallRating}',
+                  '${_userDetails.overallRating}',
                   style: const TextStyle(
                     color: Color.fromRGBO(66, 107, 255, 1),
                     fontSize: 20,
@@ -87,13 +90,6 @@ class User extends StatelessWidget {
                 ),
                 primary: Colors.teal,
               ),
-              // style: ButtonStyle(
-              //   shape: MaterialStateProperty.all(
-              //     RoundedRectangleBorder(
-              //       borderRadius: BorderRadius.circular(30.0),
-              //     ),
-              //   ),
-              // ),
             )
           ],
         )
