@@ -29,11 +29,7 @@ class Repository {
 
       notifications.forEach(
         (item) => listOfNotifications.add(
-          Notification(
-            date: item['timestamp'].toDate(),
-            title: item['title'],
-            imageUrl: item['image_url'],
-          ),
+          Notification.fromJson(item),
         ),
       );
 
