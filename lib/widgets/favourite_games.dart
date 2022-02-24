@@ -1,12 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import '../data/models/user_details.dart';
+import '../data/models/game.dart';
 
 class FavouriteGames extends StatelessWidget {
-  final UserDetails _userDetails;
+  final List<Game> _favouriteGames;
 
-  FavouriteGames(this._userDetails);
+  const FavouriteGames(this._favouriteGames, {Key? key}) : super(key: key);
 
   Widget getApp(index) {
     return Column(
@@ -35,7 +35,7 @@ class FavouriteGames extends StatelessWidget {
                     20,
                   ),
                   child: CachedNetworkImage(
-                    imageUrl: _userDetails.favoriteGames[index]['icon_url'],
+                    imageUrl: _favouriteGames[index].iconUrl,
                     placeholder: (context, url) => const SizedBox(
                       width: 96,
                       height: 96,
@@ -53,7 +53,7 @@ class FavouriteGames extends StatelessWidget {
               ),
               Flexible(
                 child: Text(
-                  _userDetails.favoriteGames[index]['game_name'],
+                  _favouriteGames[index].name,
                   style: const TextStyle(
                     color: Color.fromRGBO(45, 45, 51, 1),
                     fontSize: 14,
@@ -98,7 +98,7 @@ class FavouriteGames extends StatelessWidget {
                 horizontal: 18,
               ),
               scrollDirection: Axis.horizontal,
-              itemCount: _userDetails.favoriteGames.length,
+              itemCount: _favouriteGames.length,
               itemBuilder: (context, index) {
                 return getApp(index);
               },

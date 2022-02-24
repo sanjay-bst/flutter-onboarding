@@ -1,4 +1,5 @@
 import '../dummy_data.dart';
+import './game.dart';
 
 class UserDetails {
   final String userName;
@@ -9,7 +10,7 @@ class UserDetails {
   final String gender;
   final int winPercentage;
   final int tournamentsPlayed;
-  final List<dynamic> favoriteGames;
+  final List<Game> favoriteGames;
   final int matchedPlayed;
   final int tournamentsWon;
   final String avatarUrl;
@@ -25,7 +26,8 @@ class UserDetails {
         gender = json['data']['gender'],
         winPercentage = json['data']['win_percentage'],
         tournamentsPlayed = json['data']['tournaments_played'],
-        favoriteGames = favoriteGamesList,
+        favoriteGames =
+            favoriteGamesList.map((app) => Game.fromJson(app)).toList(),
         matchedPlayed = json['data']['matches_played'],
         tournamentsWon = json['data']['tournaments_won'],
         avatarUrl = json['data']['avatar_url'],

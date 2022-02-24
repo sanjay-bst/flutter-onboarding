@@ -5,7 +5,7 @@ import '../data/models/user_details.dart';
 class User extends StatelessWidget {
   final UserDetails _userDetails;
 
-  User(this._userDetails);
+  const User(this._userDetails, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

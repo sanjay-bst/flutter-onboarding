@@ -45,7 +45,7 @@ class Home extends StatelessWidget {
               children: [
                 User(state.userDetails),
                 Stats(state.userDetails),
-                FavouriteGames(state.userDetails),
+                FavouriteGames(state.userDetails.favoriteGames),
               ],
             ),
           ),
