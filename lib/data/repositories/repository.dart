@@ -25,15 +25,12 @@ class Repository {
     final notifications = await _firebaseService.fetchNotifications();
 
     try {
-      List<Notification> listOfNotifications = [];
-
-      notifications.forEach(
-        (item) => listOfNotifications.add(
-          Notification.fromJson(item),
+      return List.generate(
+        notifications.length,
+        (index) => Notification.fromJson(
+          notifications[index],
         ),
       );
-
-      return listOfNotifications;
     } catch (e) {
       return [];
     }
